@@ -1,6 +1,6 @@
 ### Introduction
 
-Currently supported resources: `Versions`, `Books`, `Chapters`, `Versions`
+Currently supported resources: `Versions`, `Books`, `Chapters`, `Verses`
 
 Provides a lens interface to the bibles.org API.
 
