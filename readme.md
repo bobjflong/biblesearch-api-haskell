@@ -45,7 +45,7 @@ Fetch books in a Bible version
 
 ```haskell
 > :set -XOverloadedStrings
-> :m Bible.Versions
+> :m Bible.Books
 
 > import Control.Lens
 > import Data.Maybe
