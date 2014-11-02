@@ -16,7 +16,7 @@ build-type:          Simple
 cabal-version:       >=1.10
 
 library
-  exposed-modules:     Bible.Request, Bible.Versions, Bible.Books
+  exposed-modules:     Bible.Request, Bible.Versions, Bible.Books, Bible.Chapters
   -- other-modules:       
   -- other-extensions:    
   build-depends:       base >=4.7 && <4.8, wreq, lens, bytestring, text, lens-family-core, lens-family-th, aeson

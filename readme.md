@@ -41,7 +41,7 @@ Fetch available Bible versions.
 
 ### Books
 
-Fetch books in a Bible version
+Fetch Books in a Bible version
 
 ```haskell
 > :set -XOverloadedStrings
@@ -65,4 +65,29 @@ Fetch books in a Bible version
 
 > genesis ^. testament
 OldTestament
+```
+
+### Chapters
+
+Fetch Chapters in a Book
+
+```haskell
+> :set -XOverloadedStrings
+> :m Bible.Chapters
+
+> import Control.Lens
+> import Data.Maybe
+
+> chapterResult <- listChapters "eng-GNTD:2Tim" "YOUR-API-KEY"
+
+> let chapterOne = (head.fromJust) chapterResult
+
+> chapterOne ^. chapter
+ChapterNumber 1
+
+> chapterOne ^. chapterId
+"eng-GNTD:2Tim.1"
+
+> chapterOne ^. osisEnd
+"eng-GNTD:2Tim.1.18"
 ```
