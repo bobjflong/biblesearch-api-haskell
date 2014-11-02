@@ -1,9 +1,10 @@
+### Introduction
 
 *WIP - adding resources as I have time*
 
 Provides a lens interface to the bibles.org API.
 
-Examples presume an active ghci session. In examples I may use unsafe functions such as `head` and `fromJust`. You should avoid their use in production code.
+Examples presume an active ghci session. *In examples I may use unsafe functions such as `head` and `fromJust`. You should avoid their use in production code*.
 
 ### Versions
 
