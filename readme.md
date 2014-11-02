@@ -41,7 +41,7 @@ Fetch available Bible versions.
 
 ### Books
 
-Fetch books is a Bible version
+Fetch books in a Bible version
 
 ```haskell
 > :set -XOverloadedStrings
