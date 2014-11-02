@@ -2,6 +2,7 @@
 *.o
 CSVPivot
 *.swp
+*.hs.swo
 *.sublime-project
 Main
 dist/
