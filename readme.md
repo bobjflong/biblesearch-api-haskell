@@ -91,3 +91,33 @@ ChapterNumber 1
 > chapterOne ^. osisEnd
 "eng-GNTD:2Tim.1.18"
 ```
+
+### Verses
+
+Fetch Verses in a Chapter
+
+```haskell
+> :set -XOverloadedStrings
+> :m Bible.Verses
+
+> import Control.Lens
+> import Data.Maybe
+
+> verses <- listVerses "eng-KJV:Matt.10" "YOUR-API-KEY"
+
+> let verse = head $ filter (\v -> v ^. reference == "Matthew 10:16") (fromJust verses)
+
+> verse ^. reference
+"Matthew 10:16"
+
+> verse ^. text
+"<p class=\"p\"><sup id=\"Matt.10.16\" class=\"v\">16</sup>
+  Behold, I send you forth as sheep in the midst of wolves: be ye therefore wise as serpents, and harmless as doves.
+</p>"
+
+> verse ^. verseId
+"eng-KJV:Matt.10.16"
+
+> verse ^. osisEnd
+"eng-KJV:Matt.10.16"
+```
