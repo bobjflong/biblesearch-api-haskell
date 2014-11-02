@@ -37,3 +37,31 @@ Fetch available Bible versions.
 > kjv ^. name
 "King James Version"
 ```
+
+### Books
+
+Fetch books is a Bible version
+
+```haskell
+> :set -XOverloadedStrings
+> :m Bible.Versions
+
+> import Control.Lens
+> import Data.Maybe
+
+> bookResult <- listBooks "eng-KJV" "YOUR-API-KEY"
+
+> let genesis = (head.fromJust) bookResult
+
+> genesis ^. name
+"Genesis"
+
+> genesis ^. bookId
+"eng-KJV:Gen"
+
+> genesis ^. osisEnd
+"eng-KJV:Gen.50.26"
+
+> genesis ^. testament
+OldTestament
+```
