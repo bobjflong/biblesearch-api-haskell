@@ -16,7 +16,6 @@ import           Control.Lens
 import           Data.Aeson
 import qualified Data.ByteString     as B
 import           Data.Text           hiding (empty)
-import           Debug.Trace
 import           Lens.Family
 
 data Version = Version {
