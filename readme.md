@@ -1,3 +1,6 @@
+
+*WIP - adding resources as I have time*
+
 Provides a lens interface to the bibles.org API.
 
 Examples presume an active ghci session.
