@@ -3,7 +3,7 @@
 
 Provides a lens interface to the bibles.org API.
 
-Examples presume an active ghci session.
+Examples presume an active ghci session. In examples I may use unsafe functions such as `head` and `fromJust`. You should avoid their use in production code.
 
 ### Versions
 
@@ -18,7 +18,7 @@ Fetch available Bible versions.
 
 > versionResult <- listVersions "YOUR-API-KEY"
 
-> let versions = fromJust versionResult -- don't use fromJust outside of testing...
+> let versions = fromJust versionResult
 
 > let kjv = head $ filter (\x -> x ^. name == "King James Version") versions
 
