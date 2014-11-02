@@ -1,6 +1,6 @@
 ### Introduction
 
-*WIP - adding resources as I have time*
+Currently supported versions: `Versions`, `Books`, `Chapters`, `Versions`
 
 Provides a lens interface to the bibles.org API.
 
