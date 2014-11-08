@@ -21,6 +21,14 @@ genSafeText :: Gen Text
 genSafeText = fmap pack $ listOf $ elements ['a'..'z']
 
 placingAndRetrievingVerses :: Verse -> Text -> Bool
-placingAndRetrievingVerses v t = t == (plainText .~ t $ v) ^. plainText  
+placingAndRetrievingVerses v t = t == (plainText .~ t $ v) ^. plainText
+
+settingWhatYouGet :: Verse -> Bool
+settingWhatYouGet v = v == (plainText .~ (v ^. plainText) $ v)
+
+settingTwice :: Verse -> Text -> Bool
+settingTwice v t = (plainText .~ t $ v) == (plainText .~ t $ (plainText .~ t $ v))
 
 main = do quickCheck placingAndRetrievingVerses
+          >> quickCheck settingWhatYouGet
+          >> quickCheck settingTwice

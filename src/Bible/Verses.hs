@@ -17,7 +17,7 @@ import           Control.Lens
 import           Data.Aeson
 import qualified Data.ByteString     as B
 import           Data.Char
-import           Data.Text           hiding (empty, foldl, map)
+import           Data.Text           hiding (empty, foldl, map, all)
 import qualified Data.Text           as T
 import qualified Data.Text.Lazy      as TL
 import           Lens.Family         hiding ((^.))
@@ -28,9 +28,17 @@ data Verse = Verse {
   _reference :: Text,
   _osisEnd   :: Text,
   _verseId   :: Text
-} deriving (Show, Eq)
+} deriving (Show)
 
 $(makeLenses ''Verse)
+
+instance Eq Verse where
+  v == v1 = all (==True) $ [
+              (v ^. plainText) == (v1 ^. plainText),
+              (v ^. reference) == (v1 ^. reference),
+              (v ^. osisEnd) == (v1 ^. osisEnd),
+              (v ^. verseId) == (v1 ^. verseId)
+            ]
 
 instance FromJSON Verse where
   parseJSON (Object v) = do
