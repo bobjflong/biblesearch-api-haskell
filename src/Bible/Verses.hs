@@ -4,6 +4,7 @@
 module Bible.Verses(
       listVerses
     , html
+    , plainText
     , reference
     , osisEnd
     , verseId
@@ -14,10 +15,12 @@ import           Control.Applicative
 import           Control.Lens
 import           Data.Aeson
 import qualified Data.ByteString     as B
-import           Data.Text           hiding (empty, foldl)
+import           Data.Char
+import           Data.Text           hiding (empty, foldl, map)
+import qualified Data.Text           as T
+import qualified Data.Text.Lazy      as TL
 import           Lens.Family         hiding ((^.))
-import           Text.HandsomeSoup
-import           Text.XML.HXT.Core
+import           Text.Taggy
 
 data Verse = Verse {
   _html      :: Text,
@@ -50,10 +53,22 @@ listVerses chapterId key = do
   return $ fmap verses $ decode raw
   where path = "/chapters/" `append` chapterId `append` "/verses.js"
 
-data PlainTextVerse = PlainTextVerse {
-  verse :: Text,
-  body  :: Text
-}
+plainText :: Lens' Verse Text
+plainText = lens getPlainText setPlainText
+  where getPlainText v = verseHTMLToPlainText $ v ^. html
+        setPlainText v t = v { _html = plainTextToVerseHTML t }
 
-instance Show PlainTextVerse where
-  show x = (show $ verse x) ++ "\n" ++ (show $ body x)
+verseHTMLToPlainText :: Text -> Text
+verseHTMLToPlainText html = tagsToTextExcludingNumbers $ taggyWith True (TL.fromStrict html)
+
+plainTextToVerseHTML :: Text -> Text
+plainTextToVerseHTML = template
+  where template x = T.concat ["<p>", x, "</p>"]
+
+tagsToTextExcludingNumbers :: [Tag] -> Text
+tagsToTextExcludingNumbers t = foldl append "" (map textFromTags t)
+  where textFromTags (TagText x) = case (T.all isNumber x) of
+                                     True -> ""
+                                     False -> x
+        textFromTags _ = ""
+

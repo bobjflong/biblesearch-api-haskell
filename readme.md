@@ -115,6 +115,10 @@ Fetch Verses in a Chapter
   Behold, I send you forth as sheep in the midst of wolves: be ye therefore wise as serpents, and harmless as doves.
 </p>"
 
+> verse ^. plainText
+"Behold, I send you forth as sheep in the midst of wolves: be ye therefore wise as serpents, and
+harmless as doves."
+
 > verse ^. verseId
 "eng-KJV:Matt.10.16"
 
