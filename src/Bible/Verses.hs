@@ -8,6 +8,7 @@ module Bible.Verses(
     , reference
     , osisEnd
     , verseId
+    , Verse(..)
   ) where
 
 import           Bible.Request
