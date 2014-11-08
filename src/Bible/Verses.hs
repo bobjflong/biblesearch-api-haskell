@@ -3,7 +3,7 @@
 
 module Bible.Verses(
       listVerses
-    , text
+    , html
     , reference
     , osisEnd
     , verseId
@@ -14,14 +14,16 @@ import           Control.Applicative
 import           Control.Lens
 import           Data.Aeson
 import qualified Data.ByteString     as B
-import           Data.Text           hiding (empty)
-import           Lens.Family
+import           Data.Text           hiding (empty, foldl)
+import           Lens.Family         hiding ((^.))
+import           Text.HandsomeSoup
+import           Text.XML.HXT.Core
 
 data Verse = Verse {
-  _text      :: String,
-  _reference :: String,
-  _osisEnd   :: String,
-  _verseId   :: String
+  _html      :: Text,
+  _reference :: Text,
+  _osisEnd   :: Text,
+  _verseId   :: Text
 } deriving (Show, Eq)
 
 $(makeLenses ''Verse)
@@ -48,3 +50,10 @@ listVerses chapterId key = do
   return $ fmap verses $ decode raw
   where path = "/chapters/" `append` chapterId `append` "/verses.js"
 
+data PlainTextVerse = PlainTextVerse {
+  verse :: Text,
+  body  :: Text
+}
+
+instance Show PlainTextVerse where
+  show x = (show $ verse x) ++ "\n" ++ (show $ body x)

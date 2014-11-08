@@ -22,10 +22,10 @@ import           Lens.Family
 data Testament = OldTestament | NewTestament | Unknown deriving (Show, Eq)
 
 data Book = Book {
-  _name          :: String,
-  _bookId        :: String,
-  _osisEnd       :: String,
-  _testamentData :: String
+  _name          :: Text,
+  _bookId        :: Text,
+  _osisEnd       :: Text,
+  _testamentData :: Text
 } deriving (Show, Eq)
 
 $(makeLenses ''Book)

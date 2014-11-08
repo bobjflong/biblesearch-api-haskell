@@ -19,11 +19,11 @@ import           Data.Text           hiding (empty)
 import           Lens.Family
 
 data Version = Version {
-  _versionId  :: String,
-  _name       :: String,
-  _lang       :: String,
-  _langCode   :: String,
-  _contactUrl :: String
+  _versionId  :: Text,
+  _name       :: Text,
+  _lang       :: Text,
+  _langCode   :: Text,
+  _contactUrl :: Text
 } deriving (Show, Eq)
 
 $(makeLenses ''Version)

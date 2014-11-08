@@ -110,7 +110,7 @@ Fetch Verses in a Chapter
 > verse ^. reference
 "Matthew 10:16"
 
-> verse ^. text
+> verse ^. html
 "<p class=\"p\"><sup id=\"Matt.10.16\" class=\"v\">16</sup>
   Behold, I send you forth as sheep in the midst of wolves: be ye therefore wise as serpents, and harmless as doves.
 </p>"

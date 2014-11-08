@@ -17,9 +17,9 @@ import           Data.Text           hiding (empty, filter)
 import           Lens.Family
 
 data Chapter = Chapter {
-  _chapterData :: String,
-  _osisEnd     :: String,
-  _chapterId   :: String
+  _chapterData :: Text,
+  _osisEnd     :: Text,
+  _chapterId   :: Text
 } deriving (Show, Eq)
 
 data ChapterNumber = ChapterNumber Int | UnknownChapter deriving (Show)
@@ -28,10 +28,10 @@ $(makeLenses ''Chapter)
 
 chapter :: Lens' Chapter ChapterNumber
 chapter = lens getChapter setChapter
-  where getChapter c = case (reads (_chapterData c) :: [(Int, String)]) of
+  where getChapter c = case (reads (unpack $ _chapterData c) :: [(Int, String)]) of
                          [(a,"")] -> ChapterNumber a
                          _ -> UnknownChapter
-        setChapter c (ChapterNumber x) = c { _chapterData = (show x) }
+        setChapter c (ChapterNumber x) = c { _chapterData = (pack $ show x) }
         setChapter c UnknownChapter = c { _chapterData = "" }
 
 instance FromJSON Chapter where
